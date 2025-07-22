@@ -1,50 +1,1465 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Contoh HTML aing</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nielzy Music Studio</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+      
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #9a5c6d;
+      color: #333;
+      padding: 0;
+    }
+
+    header {
+      background-color: #17171e;
+      color: rgb(162, 149, 149);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    header h1 {
+      font-size: 24px;
+    }
+
+    header input {
+      width: 40%;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    header i {
+      font-size: 26px;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .now-playing {
+      display: flex;
+      gap: 20px;
+      background-color: rgb(0, 0, 0);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .now-playing img {
+      width: 120px;
+      height: 120px;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+
+    .info h2 {
+      margin-bottom: 5px;
+      font-size: 20px;
+    }
+
+    .info p {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .controls i {
+      font-size: 22px;
+      margin: 0 10px;
+      cursor: pointer;
+      color: #1e1e2f;
+      transition: transform 0.2s;
+    }
+
+    .controls i:hover {
+      transform: scale(1.2);
+      color: #0077b6;
+    }
+
+    .playlist {
+      background-color: rgb(248, 248, 248);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 40px;
+    }
+
+    .playlist h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .playlist ul {
+      list-style: none;
+    }
+
+    .playlist li {
+      padding: 10px 0;
+      border-bottom: 1px solid #9b8888;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+    }
+
+    .playlist li:last-child {
+      border-bottom: none;
+    }
+
+    .playlist i {
+      color: #1e1e2f;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .playlist i:hover {
+      transform: scale(1.2);
+      color: #00a8e8;
+    }
+
+    .spotify-embed {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .swiper {
+      width: 100%;
+      height: 220px;
+      margin-bottom: 30px;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .now-playing {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      header input {
+        width: 100%;
+      }
+
+      .swiper-slide img {
+        height: 160px;
+      }
+    }
+    .playlist-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.playlist ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(254, 254, 254)
+  color(white);
+}
+
+.playlist-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  width: 300px;
+}
+li {
+  background-color: #817f7f;S
+  margin: 8px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+}
+li:hover {
+  background-color: #ffffff;
+}
+.lyrics {
+  display: none;
+  font-size: 14px;
+  margin-top: 6px;
+  background-color: #ffffff;
+  border-left: 4px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 5px;
+  color: #333;
+}
+.playlist-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 100;
+  color: #000000;
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+.spotify-frame {
+  width: 100%;
+  height: 500px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+.playlist-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.6);
+}
+/* Pop-up profil (sembunyi awalnya) */
+.profile-popup {
+  position: absolute;
+  top: 70px;
+  right: 40px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(227, 218, 218, 0.2);
+  padding: 10px 20px;
+  z-index: 999;
+  display: none;
+}
+
+/* Kalau aktif */
+.profile-popup.active {
+  display: block;
+}
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.profile-icon:hover {
+  transform: scale(1.1);
+}
+
+.profile-popup {
+  position: absolute;
+  top: 80px;
+  right: 50px;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* transparan hitam */
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #d79f9f;
+  color: #333;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.modal-content button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #17171e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+ .profile-popup {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: #000;
+    color: #fff;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    width: 220px;
+    z-index: 100;
+    font-family: Arial, sans-serif;
+  }
+
+  .profile-popup p {
+    margin: 0 0 15px;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .profile-popup a,
+  .profile-popup button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #fff;
+    background: none;
+    border: none;
+    font-size: 15px;
+    padding: 6px 0;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .profile-popup a:hover,
+  .profile-popup button:hover {
+    color: #1abc9c;
+  }
+
+  .profile-popup i {
+    width: 18px;
+    text-align: center;
+  }
+
+  .profile-popup button {
+    width: 100%;
+    text-align: left;
+  }
+
+  .profile-popup p {
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+
+  .menu-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    text-decoration: none;
+    background: none;
+    border: none;
+    font-size: 15px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .menu-link:hover {
+    color: #1abc9c;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+  }
+</style>
+<!-- Popup profil -->
+<div class="profile-popup" id="profilePopup" style="display: none;">
+  <p>WELCOMEE, NIELZY</p>
+
+  <a href="#" onclick="openProfileModal()" class="menu-link">
+    <img src="c:\Users\cynzw\OneDrive\Pictures\OIP (7).jpg" class="icon" alt="profil icon">
+    Lihat Profil
+  </a>
+
+  <button onclick="logout()" class="menu-link">
+    <img src="c:\Users\cynzw\OneDrive\Pictures\vector-logout-sign-icon.jpg" class="icon" alt="logout icon">
+    Logout
+  </button>
+</div>
+</style>
 </head>
 <body>
+  <header>
+  <div class="logo-title">Nielzy Music</div>
+  <input type="text" placeholder="CARI LAGU APA..." class="search-box">
+  <img src="c:\Users\cynzw\OneDrive\Pictures\WhatsApp Image 2025-07-22 at 10.20.15_40ea19b0.jpg" alt="Profile" class="profile-icon" onclick="toggleProfile()">
+</header>
 
-    <h1>SEMANGAT FENNY DIETNYAA</h1>
-    <p><a href="#">CHRIST DANIEL SANTOSO</a> 2311102305</p>
-    <tr> 
-    </tr>
-    <a href="https://www.youtube.com/watch?v=020g-0hhCAU&pp=ygUJY29jb21lbG9u">link di sini</a><br>
-    <tr>
-    </tr>
-    <input type="button" id="btnsubmit" class="btnsubmit" value="kirim" />
+<!-- Popup profil -->
+<div id="profilePopup" class="profile-popup" style="display: none;">
+  <p>WELCOMEE, NIELZY</p>
+  <a href="#" onclick="openProfileModal()">Lihat Profil</a>
+  <br>
+<button onclick="logout()" style="margin-left: 10px;">Logout</button>
+</div>
+  </header>
 
-    <h2>12345678</h2>
-    <h3>12345678</h3>
-    <h4>12345678</h4>
-    <h5>12345678</h5>
-    <h6>12345678</h6>
+  <main>
+    <!-- Iklan swipe (SwiperJS) -->
+    <section class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="c:\Users\cynzw\OneDrive\Pictures\WhatsApp Image 2025-07-21 at 17.54.55_c849bb9d.jpg">
+        </div>
+        <div class="swiper-slide">
+          <img src="c:\Users\cynzw\OneDrive\Pictures\WhatsApp Image 2025-07-21 at 17.55.55_a19d1940.jpg">
+        </div>
+        <div class="swiper-slide">
+          <img src="c:\Users\cynzw\OneDrive\Pictures\WhatsApp Image 2025-07-21 at 17.54.27_c6104ed6.jpg">
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </section>
 
-    <table width="80%" height="50" border="3">
-        <tr>
-            <th>Nama Lengkap</th>
-            <th>Kota Kelahiran</th>
-            <th>Umur</th>
-        </tr>
-        <tr>
-            <th>Daniel</th>
-            <th>Surabaya</th>
-            <th>20</th>
-        </tr>
-        <tr>
-            <th>Fenny</th>
-            <th>Jakarta</th>
-            <th>18</th>
-        </tr>
-        <tr>
-            <th>Kennedy</th>
-            <th>Batam</th>
-            <th>21</th>
-        </tr>
-    </table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Artis Papan Atas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-8 bg-gray-100">
+  <div class="max-w-screen-lg mx-auto bg-white p-6 rounded-xl shadow-md">
+    <h2 class="text-2xl font-bold mb-4">Artis Papan Atas</h2>
+    <div class="flex overflow-x-auto space-x-4">
+      
+      <!-- Artis 1 -->
+      <div class="flex-shrink-0 w-32 text-center">
+        <img src="c:\Users\cynzw\OneDrive\Pictures\wp11604988.webp" class="w-full h-32 object-cover rounded-xl" alt="Taylor Swift">
+        <p class="mt-2">Taylor Swift</p>
+      </div>
 
-    <br>
-    <img src="https://img.youtube.com/vi/020g-0hhCAU/hqdefault.jpg" alt="Thumbnail YouTube">
+      <!-- Artis 2 -->
+      <div class="flex-shrink-0 w-32 text-center">
+        <img src="c:\Users\cynzw\OneDrive\Pictures\2386660.webp" class="w-full h-32 object-cover rounded-xl" alt="The Weeknd">
+        <p class="mt-2">The Weeknd</p>
+      </div>
 
+      <!-- Artis 3 -->
+      <div class="flex-shrink-0 w-32 text-center">
+        <img src="c:\Users\cynzw\OneDrive\Pictures\OIP.jpg" class="w-full h-32 object-cover rounded-xl" alt="Drake">
+        <p class="mt-2">Drake</p>
+      </div>
+
+      <!-- Artis 4 -->
+      <div class="flex-shrink-0 w-32 text-center">
+        <img src="c:\Users\cynzw\OneDrive\Pictures\OIP (1).jpg" class="w-full h-32 object-cover rounded-xl" alt="Skyline">
+        <p class="mt-2">Skyline</p>
+      </div>
+
+      <!-- Artis 5 -->
+      <div class="flex-shrink-0 w-32 text-center">
+        <img src="c:\Users\cynzw\OneDrive\Pictures\OIP (2).jpg" class="w-full h-32 object-cover rounded-xl" alt="Hindia">
+        <p class="mt-2">Hindia</p>
+      </div>
+
+      <!-- Artis 6 -->
+      <div class="flex-shrink-0 w-32 text-center">
+        <img src="c:\Users\cynzw\OneDrive\Pictures\OIP (6).jpg" class="w-full h-32 object-cover rounded-xl" alt="Ariana Grande">
+        <p class="mt-2">Ariana Grande</p>
+      </div>
+
+      <!-- Artis 7 -->
+      <div class="flex-shrink-0 w-32 text-center">
+        <img src="c:\Users\cynzw\OneDrive\Pictures\OIP (3).jpg" class="w-full h-32 object-cover rounded-xl" alt="Billie Eilish">
+        <p class="mt-2">Billie Eilish</p>
+      </div>
+
+      <!-- Artis 8 -->
+      <div class="flex-shrink-0 w-32 text-center">
+        <img src="c:\Users\cynzw\OneDrive\Pictures\OIP (4).jpg" class="w-full h-32 object-cover rounded-xl" alt="Ed Sheeran">
+        <p class="mt-2">Ed Sheeran</p>
+      </div>
+
+      <!-- Artis 9 -->
+      <div class="flex-shrink-0 w-32 text-center">
+        <img src="c:\Users\cynzw\OneDrive\Pictures\olivia-rodrigo-photo-shoot-for-her-sophomore-album-guts-2023-3.jpg" class="w-full h-32 object-cover rounded-xl" alt="Olivia Rodrigo">
+        <p class="mt-2">Olivia Rodrigo</p>
+      </div>
+
+      <!-- Artis 10 -->
+      <div class="flex-shrink-0 w-32 text-center">
+        <img src="c:\Users\cynzw\OneDrive\Pictures\OIP (5).jpg" class="w-full h-32 object-cover rounded-xl" alt="Future">
+        <p class="mt-2">Future</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+</body>
+</html>
+  </div>
+</section>
+    </section>
+    <!-- Daftar lagu -->
+  <div class="playlist-container">
+    <ul>
+      <li onclick="toggleLyrics(this)">🎵 ILYSB (Stripped) - LANY <i class="fas fa-play"></i>
+  <div class="lyrics">
+    Ain't never felt this way<br>
+    Can't get enough so stay with me<br>
+    It's not like we got big plans<br>
+    Let's drive around town holding hands<br><br>
+
+    And you need to know<br>
+    You're the only one, alright... alright<br>
+    And you need to know<br>
+    That you keep me up all night, all night<br><br>
+
+    Oh, my heart hurts so good<br>
+    I love you, baby, so bad, so bad<br>
+    Oh, oh my heart hurts so good<br>
+    I love you, baby, so bad, so bad<br><br>
+
+    Mad cool in all my clothes<br>
+    Mad warm when you get close... to me<br>
+    Slow dance these summer nights<br>
+    Our disco ball's my kitchen light<br><br>
+
+    And you need to know<br>
+    That nobody could take your place, your place<br>
+    And you need to know<br>
+    That I'm hella obsessed with your face, your face<br><br>
+
+    Oh, my heart hurts so good<br>
+    I love you, baby, so bad, so bad<br>
+    Oh, oh my heart hurts so good<br>
+    I love you, baby, so bad, so bad<br><br>
+
+    And you need to know<br>
+    You're the only one - alright, alright<br>
+    And you need to know<br>
+    That you keep me up all night, all night<br><br>
+
+    My heart hurts so good<br>
+    I love you, baby, so bad, so bad<br>
+    Oh, oh my heart hurts so good<br>
+    I love you, baby, so bad, so bad...<br>
+    So bad, oh<br>
+    Oh, my heart hurt...<br>
+    Oh, my heart hurt...<br>
+    Oh, my heart hurt...<br>
+    So bad...
+  </div>
+      <li onclick="toggleLyrics(this)">🎵 Thick And Thin – LANY <i class="fas fa-play"></i>
+  <div class="lyrics">
+    Late night<br>
+    Your eyes fell to the floor<br>
+    I'm trying to make sense<br>
+    But you're losing your patience<br>
+    Hands talk, won't stop<br>
+    We go to war<br>
+    In the heat of the moment<br>
+    You think that we're broken<br><br>
+
+    I could see my whole life with you baby<br>
+    Now you got me thinking that I'm crazy<br>
+    Cause you're...<br><br>
+
+    Out the door<br>
+    Just one mistake<br>
+    You say you're not in love no more<br>
+    But was it really love<br>
+    If you can leave me for<br>
+    Something so innocent<br>
+    Is this the end?<br>
+    Thought you'd be there through thick and thin<br><br>
+
+    Can't sleep, can't eat<br>
+    My mind's a mess<br>
+    What are you thinking?<br>
+    You were happy last weekend<br>
+    All the good times<br>
+    How'd you forget?<br>
+    I was your best friend, yeah<br>
+    Remember when you said<br><br>
+
+    You could see your whole life with me baby<br>
+    Now you got me thinking that I'm crazy<br>
+    Cause you're...<br><br>
+
+    Out the door<br>
+    Just one mistake<br>
+    You say you're not in love no more<br>
+    But was it really love<br>
+    If you can leave me for<br>
+    Something so innocent<br>
+    Is this the end?<br>
+    Thought you'd be there through thick and thin<br><br>
+
+    Thought you'd be there through thick and thin<br>
+    Thought you'd be there through thick and thin<br>
+    Thought you'd be there through thick and thin<br><br>
+
+    Said you'd be there for me through everything<br>
+    Said that you'd have my back with anything<br>
+    Said you'd be there for me through everything<br>
+    Said that you'd have my back with anything<br><br>
+
+    Now you're out the door<br>
+    Just one mistake<br>
+    You say you're not in love no more<br>
+    But was it really love<br>
+    If you can leave me for<br>
+    Something so innocent<br>
+    Is this the end?<br>
+    Thought you'd be there through thick and thin<br><br>
+
+    Out the door<br>
+    Just one mistake<br>
+    You say you're not in love no more<br>
+    But was it really love<br>
+    If you can leave me for<br>
+    Something so innocent<br>
+    Is this the end?<br>
+    Thought you'd be there through thick and thin<br><br>
+
+    Said you'd be there for me through everything<br>
+    Said that you'd have my back with anything<br>
+    Said you'd be there for me through everything<br>
+    Said that you'd have my back with anything
+  </div>
+</li>
+      </li>
+     <li onclick="toggleLyrics(this)">🎵 Malibu Nights – LANY <i class="fas fa-play"></i>
+  <div class="lyrics">
+    There's no reason, there's no rhyme<br>
+    I found myself blindsided by<br>
+    A feeling that I've never known<br>
+    I'm dealing with it on my own<br><br>
+
+    Phone is quiet, walls are bare<br>
+    I drink myself to sleep. Who cares?<br>
+    No one even has to know<br>
+    I'm dealing with it on my own<br><br>
+
+    I've got way too much time to be this hurt<br>
+    Somebody, help. It's getting worse<br>
+    What do you do with a broken heart?<br>
+    Once the light fades, everything is dark<br><br>
+
+    Way too much whiskey in my blood<br>
+    I feel my body giving up<br>
+    Can I hold on for another night?<br>
+    What do I do with all this time?<br><br>
+
+    Heavy thoughts, when it gets late<br>
+    Put me in a fragile state<br>
+    I wish I wasn't going home<br>
+    Dealing with it on my own<br><br>
+
+    I'm praying, but it's not enough<br>
+    I'm done. I don't believe in love<br>
+    Learning how to let it go<br>
+    Dealing with it on my own<br><br>
+
+    I've got way too much time to be this hurt<br>
+    Somebody, help. It's getting worse<br>
+    What do you do with a broken heart?<br>
+    Once the light fades, everything is dark<br><br>
+
+    Way too much whiskey in my blood<br>
+    I feel my body giving up<br>
+    Can I hold on for another night?<br>
+    What do I do with all this time?<br>
+    Yeah<br><br>
+
+    I drive circles under street lights<br>
+    Nothing seems to clear my mind<br>
+    I can't forget<br>
+    If it's inside my head<br>
+    So, I drive chasing Malibu nights<br>
+    Nothing seems to heal my mind<br>
+    I can't forget<br><br>
+
+    I've got way too much time to be this hurt<br>
+    Somebody, help. It's getting worse<br>
+    What do you do with a broken heart?<br>
+    Once the light fades, everything is dark<br><br>
+
+    Way too much whiskey in my blood<br>
+    I feel my body giving up<br>
+    Can I hold on for another night?<br>
+    What do I do with all this time?<br>
+    Yeah<br><br>
+
+    I drive circles under street lights<br>
+    Nothing seems to clear my mind<br>
+    I can't forget<br>
+    If it's inside my head<br>
+    So, I drive chasing Malibu nights<br>
+    Nothing seems to heal my mind<br>
+    I can't forget<br>
+    If it's inside my head<br><br>
+
+    So, I drive chasing Malibu nights<br>
+    Nothing seems to heal my mind
+  </div>
+</li>
+      </li>
+      <li onclick="toggleLyrics(this)">🎵 Super Far – LANY <i class="fas fa-play"></i>
+        <div class="lyrics">Up all night on my mind got me thinking
+Wanna stay, can you give me a reason<br>
+I don't think so, I don't think so<br>
+I'm in love with someone but I'm not sure<br>
+She can love someone back the way they love her<br>
+I don't think so, I don't think so<br>
+
+Don't be mean if you wanna go<br>
+You can leave and leave my heart alone<br>
+
+Waking up to nothing when you're super far from home<br>
+And I watch you fall asleep at night and lay there on my own<br>
+Got me begging for affection<br>
+All you do is roll your eyes<br>
+Broken down, I've had enough<br>
+If this is love I don't want it<br>
+
+Give it time, come on babe it's been ten months<br>
+You should know, do you know, know what you want<br>
+I don't think so, I don't think so<br>
+Make it work know it hurts but I'll go there<br>
+Do the same can you show me that you care<br>
+God I hope so but I don't think so<br>
+
+Don't be mean if you're here for good<br>
+I'm gonna need a little more from you<br>
+
+Waking up to nothing when you're super far from <br>
+And I watch you fall asleep at night and lay there on my own<br>
+Got me begging for affection<br>
+Broken down, I've had enough<br>
+If this is love I don't want it<br>
+All my friends keep saying that I'm way too good to you<br>
+But my heart is so invested I don't wanna face the <br>
+I'm not happy and you know it and you still don't even <br>
+Broken down, I've had enough<br>
+If this is love, I don't want <br>
+
+Waking up to nothing when you're super far from home<br>
+And I watch you fall asleep at night and lay there on my own<br>
+Got me begging for affection<br>
+All you do is roll your eyes<br>
+Broken down, I've had enough<br>
+If this is love I don't want it<br>
+All my friends keep saying that I'm way too good to you<br>
+But my heart is so invested I don't wanna face the truth<br>
+I'm not happy and you know it and you still don't even try<br>
+Broken down, I've had enough<br>
+If this is love, I don't want <br>
+
+      <li onclick="toggleLyrics(this)">🎵 Mean It – LANY <i class="fas fa-play"></i>
+  <div class="lyrics">
+    Small talk, no conversation<br>
+    That look makes me impatient<br>
+    I can't tell what you're thinkin'<br>
+    Please tell me what you're thinkin'<br>
+    Last night we were more than fine<br>
+    Just tell me if you changed your mind<br>
+    If you changed your mind (mi-i-ind)<br><br>
+
+    'Cause I'm all, I'm all in<br>
+    I'm callin', no answer<br>
+    But you text me when you feel like,<br>
+    When it feels right to you<br>
+    But I'm all, I'm all in<br>
+    I'm fallin' faster<br>
+    But if you're looking at me with a<br>
+    Heart of doubt<br><br>
+
+    Don't kiss me right now<br>
+    Don't tell me that you need me<br>
+    Don't show up at my house<br>
+    All caught up in your feelings<br>
+    Don't run me round and round<br>
+    Don't build me up just to let me<br>
+    Down, just to let me<br>
+    Down, down, down (eh)<br>
+    Don't mess with my head<br>
+    Don't tell me you're falling<br>
+    With your feet still on the ledge<br>
+    I'm all out of breath, baby<br>
+    Don't run me round and round<br>
+    Don't kiss me, no, don't kiss me<br>
+    Right now, on your lips just leave it<br>
+    If you don't mean it<br><br>
+
+    Ah, yeah<br>
+    You know you got me in the palm of your hand<br>
+    But I love those hands<br>
+    Ah, yeah<br>
+    But you only let me hold you when he can't<br>
+    Yeah, I don't understand<br><br>
+
+    'Cause I'm all, I'm all in<br>
+    I'm callin', no answer<br>
+    But you text me when you feel like,<br>
+    When it feels right to you<br>
+    But I'm all, I'm all in<br>
+    I'm fallin' faster<br>
+    But if you're looking at me with a<br>
+    Heart of doubt<br><br>
+
+    Don't kiss me right now<br>
+    Don't tell me that you need me<br>
+    Don't show up at my house<br>
+    All caught up in your feelings<br>
+    Don't run me round and round<br>
+    Don't build me up just to let me<br>
+    Down, just to let me<br>
+    Down, down, down (eh)<br>
+    Don't mess with my head<br>
+    Don't tell me you're falling<br>
+    With your feet still on the ledge<br>
+    I'm all out of breath, baby<br>
+    Don't run me round and round<br>
+    Don't kiss me, no, don't kiss me<br>
+    Right now, on your lips just leave it<br>
+    If you don't mean it<br><br>
+
+    "Hurry home, let's never leave the house"<br>
+    (But you don't mean it)<br>
+    "Let's stay in bed while all our friends go out"<br>
+    (But you don't mean it)<br>
+    Why you let those words come out your mouth?<br>
+    (If you don't mean it)<br>
+    You've been staring at me with a heart of doubt<br>
+    (Ah-ah)<br><br>
+
+    Don't kiss me right now<br>
+    Don't tell me that you need me<br>
+    Don't show up at my house<br>
+    All caught up in your feelings<br>
+    Don't run me round and round<br>
+    Don't build me up just to let me<br>
+    Down, just to let me<br>
+    Down, down, down (eh)<br>
+    Don't mess with my head<br>
+    Don't tell me you're falling<br>
+    With your feet still on the ledge<br>
+    I'm all out of breath, baby<br>
+    Don't run me round and round<br>
+    Don't kiss me, no, don't kiss me<br>
+    Right now, on your lips just leave it<br>
+    If you don't mean it
+  </div>
+</li>
+<li onclick="toggleLyrics(this)">🎵 Nothing Without You – LANY <i class="fas fa-play"></i>
+  <div class="lyrics">
+    (One, two)<br>
+    (One, two, three)<br><br>
+
+    Like water in the desert<br>
+    Impossible to find<br>
+    You found me when I was broken<br>
+    Put me back together, gave me life<br><br>
+
+    Like a flower in the concrete<br>
+    So beautiful and rare<br>
+    You gave me hope when I was empty<br>
+    Walked me through the fire, you were there<br><br>
+
+    You're the sun to the moon<br>
+    You're my ocean, painted blue<br>
+    You, I'm nothing without you<br>
+    (Without you, without you)<br><br>
+
+    Like an angel in a nightmare<br>
+    You opened up my eyes<br>
+    Looking in all the wrong places<br>
+    You're the one I needed this whole time<br><br>
+
+    You're the sun to the moon<br>
+    You're my ocean, painted blue<br>
+    You, I'm nothing without you<br>
+    (Without you, without you)<br>
+    You're the light in the dark<br>
+    You're the arrow through my heart<br>
+    You, I'm nothing without you<br>
+    (Oh, oh) I'm nothing without you<br>
+    (Oh, oh) I'm nothing without you<br>
+    (Oh, oh) I'm nothing without you<br><br>
+
+    You, I'm nothing without you<br>
+    I'm nothing without you<br>
+    I'm nothing without you<br>
+    I'm nothing without you<br><br>
+
+    You're the air in my lungs<br>
+    You're the veins to my blood<br>
+    Yeah, you, I'm nothing without you<br><br>
+
+    You're the sun to the moon<br>
+    You're my ocean, painted blue<br>
+    You, I'm nothing without you<br>
+    (Without you, without you)<br>
+    You're the light in the dark<br>
+    You're the arrow through my heart<br>
+    You, I'm nothing without you<br>
+    (Oh, oh) I'm nothing without you<br>
+    (Oh, oh) I'm nothing without you<br>
+    (Oh, oh) I'm nothing without you
+  </div>
+</li>
+
+      </li>
+      <li onclick="toggleLyrics(this)">🎵 Alonica – LANY <i class="fas fa-play"></i>
+  <div class="lyrics">
+    I'm falling out of love with you LA<br>
+    Running out of reasons I should stay<br>
+    I'm overwhelmed, I'm over it<br>
+    It's too cold here anyway<br>
+    I'm falling out of love with you LA<br><br>
+
+    Back to Alonica<br>
+    Where the sun is out all the time<br>
+    My favorite beach is there<br>
+    And the sand, it stretches for miles<br>
+    Singing la-di-di-di-da<br>
+    And slowly dancing 'til the morning comes<br>
+    I feel most at home when I'm back in Alonica<br><br>
+
+    Darling, I have finally settled in<br>
+    The water's perfect for a midnight swim<br>
+    It's paradise, the stars and I<br>
+    Are catching up like old friends<br>
+    My heart is learning how to love again<br><br>
+
+    Back to Alonica<br>
+    Where the sun is out all the time<br>
+    My favorite beach is there<br>
+    And the sand, it stretches for miles<br>
+    Singing la-di-di-di-da<br>
+    And slowly dancing 'til the morning comes<br>
+    I feel most
+</div>
+      </li>
+    </ul>
+
+    <ul>
+      </li>
+      <li onclick="toggleLyrics(this)">🎵 Anaheim – NIKI <i class="fas fa-play"></i>
+      <div class="lyrics"  
+If I could, I'd freeze this moment, make it my home<br>
+You're all I want to want to know<br>
+I can tell you mean it when you kiss me slow<br>
+But please don't ask me, the answer's <br>
+
+In a perfect world, I'd kill to love you the loudest<br>
+But all I do is live to hurt you soundless<br>
+Say you see I'm lying, babe, and let this go<br>
+I can never promise you tomorrow<br>
+
+'Cause I have yet to learn how not to be his<br>
+This city will surely burn if we keep this as it is<br>
+
+But I'd give anything to stop time<br>
+And drive around Anaheim at sun down<br>
+And teach my mind to put you first<br>
+Here you are, a hero<br>
+You wanna be my new home<br>
+But baby, let up, I won't ever recognize these roads<br>
+'Cause I am lost, but not in you<br>
+Yes, I am lost, but not in you<br>
+
+I could spend my days studying your laugh's melody<br>
+And I can't live with myself 'cause I know you'd die for me<br>
+Oh, all I ask of you is please don't sleep<br>
+On this bed of promises I can't keep<br>
+
+'Cause I have yet to know how to be mine<br>
+You can try to unearth this soul<br>
+I swear you'll hate what you find<br>
+
+Ooh-ooh, oh-oh, oh-oh-oh-oh<br>
+Ooh-ooh, oh-oh, oh-oh<br>
+Ooh-ooh, oh-oh, oh-oh-oh-oh-oh<br>
+
+But I'd give anything to stop <br>
+Commit to you and not crimes<br>
+Against your truth and lose sight of every divide threatening to undo this story<br>
+But baby, I'm so sorry<br>
+I don't think that I'll ever memorize this route<br>
+'Cause I am lost, but not in you<br>
+Yes, I am lost, but not in you<br>
+
+Ooh-ooh<br>
+Ooh-whoa-oh<br>
+
+     <li onclick="toggleLyrics(this)">🎵 Oceans & Engines – NIKI <i class="fas fa-play"></i>
+  <div class="lyrics">
+    Saturday sunset<br>
+We're lying on my bed with five hours to <br>
+Fingers entwined and so were our minds<br>
+Crying, I don't want you to go<br>
+You wiped away tears<br>
+But not fears under the still and clear indigo<br>
+You said "Baby, don't cry, we'll be fine"<br>
+"You're the one thing I swear I can't outgrow"<br>
+My mother said the younger me was a pretending prodigy<br>
+Well, nothing then much has changed<br>
+'Cause while you're wolfing down liquor<br>
+My soul, it gets sicker<br>
+But I'm sticking to the screenplay<br>
+Gotta say I'm okay<br>
+But answer this, babe<br>
+
+How is it now that somehow you're a stranger?<br>
+You were mine just yesterday<br>
+I prayed the block in my airway dissipates<br>
+And instead deters your airplane's way<br>
+But heaven denied<br>
+Destiny decried<br>
+Something beautiful died<br>
+Too soon<br>
+
+But I'm letting go<br>
+I'm giving up the ghost<br>
+But don't get me wrong<br>
+I'll always love you that's why I wrote you this very last song<br>
+I guess this is where we say goodbye<br>
+I know I'll be alright<br>
+Someday I'll be fine<br>
+But just not tonight (Oh)<br>
+
+Plunging into all kinds of diversions<br>
+Like blush wine and sonorous soirées<br>
+But even with gin and surgin' adrenaline<br>
+I see you're all that can intoxicate<br>
+
+Oceans and engines<br>
+You're skilled at infringin' on great love affairs<br>
+'Cause now my heart's home<br>
+All I've known is long gone and ten thousand miles away<br>
+And I'm not okay<br>
+
+But I'm letting go<br>
+I'm givin' up the ghost<br>
+But don't get me wrong<br>
+I'll always love you that's why I wrote you this very last song<br>
+I guess this is where we say goodbye<br>
+I know I'll be alright<br>
+But just not<br>
+
+Tonight was the first time I stared into seas of beguiling sepia two years ago<br>
+And the first time I learned real world superpowers lived in three words they revitalize my fraying bones(Hm)<br>
+Now what do you do when your pillar crumbled down<br>
+You've lost all solid ground<br>
+Both dreams and demons drowned<br>
+And this void's all you've found<br>
+And doubts light it aglow<br>
+I have so many questions<br>
+But I'm pouring them into the ocean<br>
+And I'm starting up my engine<br>
+
+And I'm letting go<br>
+I'm givin' up your ghost<br>
+It's come to a close<br>
+I marked the end with this last song I wrote<br>
+I'm letting go<br>
+This is the last falsetto I'll ever sing to you<br>
+My great lost love<br>
+      </li>
+      <li onclick="toggleLyrics(this)">🎵 Kita Kesana – Hindia <i class="fas fa-play"></i>
+        <div class="lyrics">
+            Rayakan hari ini<br>
+Besok sisa sengsara<br>
+Belum pulang, kau pun di sini<br>
+Temani diriku<br>
+
+Kita bersandiwara<br>
+Bicara tak semestinya<br>
+Walau kita tahu nyatanya<br>
+Semua tak baik saja<br>
+
+Ada masanya kita mencuri ruang dan waktu<br>
+Walau pasti berlalu, biarkan saja kita ke sana<br>
+Selagi masih bisa bersama<br>
+Bersama<br>
+
+Semuanya sementara<br>
+Kita di ujung cerita<br>
+Untuk lima menit coba kau<br>
+Mengambil alih dunia<br>
+
+Ada masanya kita mencuri ruang dan waktu<br>
+Walau pasti berlalu, biarkan saja kita ke sana<br>
+Selagi masih bisa bersama<br>
+
+Ada masanya kita mencuri ruang dan waktu<br>
+Walau pasti berlalu, biarkan saja kita ke sana (kita ke sana)<br>
+Selama-lamanya (selama-lamanya)<br>
+Selagi masih bisa bersama<br>
+Bersama, bersama, bersama<br>
+      </li>
+      <li onclick="toggleLyrics(this)">🎵 Berdansalah, karir ini tidak ada artinya – Hindia <i class="fas fa-play"></i>
+  <div class="lyrics">
+    Besok coba kau izin pulang cepat<br>
+    Bilang saja siapa sedang sakit<br>
+    Lusa coba izin terlambat<br>
+    Bilang saja kau celaka sedikit<br><br>
+
+    Habiskan cutimu sebelum resign<br>
+    I know you're scared, but it's totally fine<br>
+    Karena kau bukan mesin assembly line<br>
+    Lihat promo liburan, babe that's a sign<br><br>
+
+    Oh, karena ku tahu<br>
+    Kalimat itu ada di ujung mulutmu<br>
+    Oh, karena kau tahu<br>
+    Tak mau lakukan itu seumur hidupmu<br><br>
+
+    Lakukan apa yang kau mau, sekarang<br>
+    Saat hatimu bergerak, jangan kau larang<br>
+    Hidup ini tak ada artinya, maka<br>
+    Kau bebas mengarang maknanya seorang<br><br>
+
+    Lakukan apa yang kau mau, sekarang<br>
+    Saat hatimu bergerak, jangan kau larang<br>
+    Lagipula hidup akan berakhir, maka<br>
+    Lakukan apa yang kau mau, sekarang<br><br>
+
+    Berdansalah, kau raja dunia!<br>
+    Karir ini tak ada artinya<br>
+    Berdansalah, kau ratu dunia!<br>
+    Hidup ini tak ada artinya<br><br>
+
+    Besok coba kau berbohong sedikit<br>
+    Lalu kau melupa saat diungkit<br>
+    Bisa juga kau jujur saja<br>
+    Separahnya kau akan makin lega<br><br>
+
+    Oh, karena ku tahu<br>
+    Kalimat itu ada di ujung mulutmu<br>
+    Oh, karena kau tahu<br>
+    Utamakanlah dirimu di sisa hidupmu<br><br>
+
+    Lakukan apa yang kau mau, sekarang<br>
+    Saat hatimu bergerak, jangan kau larang<br>
+    Hidup ini tak ada artinya, maka<br>
+    Kau bebas mengarang maknanya seorang<br><br>
+
+    Lakukan apa yang kau mau, sekarang<br>
+    Saat hatimu bergerak, jangan kau larang<br>
+    Lagipula hidup akan berakhir, maka<br>
+    Lakukan apa yang kau mau, sekarang<br><br>
+
+    Lakukan apa yang kau mau, sekarang<br>
+    Saat hatimu bergerak, jangan kau larang<br>
+    Hidup ini tak ada artinya, maka<br>
+    Kau bebas mengarang maknanya seorang<br><br>
+
+    Lakukan apa yang kau mau, sekarang<br>
+    Saat hatimu bergerak, jangan kau larang<br>
+    Lagipula hidup akan berakhir, maka<br>
+    Lakukan apa yang kau mau, sekarang<br><br>
+
+    Berdansalah, kau raja dunia!<br>
+    Karir ini tak ada artinya<br>
+    Berdansalah, kau ratu dunia!<br>
+    Hidup ini tak ada artinya<br>
+  </div>
+      <<li onclick="toggleLyrics(this)">🎵 Rumah ke Rumah – Hindia <i class="fas fa-play"></i>
+  <div class="lyrics">
+    Menyesal, tak kusampaikan<br>
+    Cinta monyetku ke Kanya dan Rebecca<br>
+    Apa kabar kalian di sana?<br>
+    Semoga hidup baik-baik saja<br><br>
+
+    Tak belajar, terkena getahnya<br>
+    Saat bersama Thanya dan Saphira<br>
+    Ku percaya, mungkin bukan jalannya<br>
+    Namun kalian banyak salah juga<br><br>
+
+    Jika dahulu ku tak cepat berubah<br>
+    Ini maafku untukmu, Sharfina<br>
+    Segala doa yang baik adanya<br>
+    Untukmu dan mimpimu yang mulia<br><br>
+
+    Pindah berkala, rumah ke rumah<br>
+    Berharap bisa berujung indah<br>
+    Walau akhirnya harus berpisah<br>
+    Terima kasih karena ku tak mudah<br><br>
+
+    Pindah berkala, rumah ke rumah<br>
+    Berharap bisa berujung indah<br>
+    Walau akhirnya harus berpisah<br>
+    Terima kasih karena ku tak mudah<br><br>
+
+    Maaf jika ku sering buat susah<br>
+    Indisya, Panda, Anggra, Caca, Sismita<br>
+    Perempuan terkuat dalam hidupku<br>
+    Terjanglah apapun yang kalian tuju<br><br>
+
+    Kau datang saat gelapku merekah<br>
+    Seluruh hatiku untukmu, Meidiana<br>
+    Kau pantas dapatkan yang baik di dunia<br>
+    Semoga kita bertahan lama<br><br>
+
+    Pindah berkala, rumah ke rumah<br>
+    Mengambil pelajaran jika berpisah<br>
+    Jikalau suatu saat berujung indah<br>
+    Catat nama kita dalam sejarah<br><br>
+
+    Pindah berkala, rumah ke rumah<br>
+    Mengambil pelajaran jika berpisah<br>
+    Jikalau suatu saat berujung indah<br>
+    Catat nama kita dalam sejarah<br><br>
+
+    Letih mengembara, rumah ke rumah<br>
+    Kadang ku lupa akanmu, Amalia<br>
+    Siap sedia tiap ku bercerita<br>
+    Ku beruntung jadi anakmu, bunda<br><br>
+
+    Pindah berkala, rumah ke rumah<br>
+    Selalu pada dirimu, aku berserah<br>
+    Jika ku disebut dalam sejarah<br>
+    M'reka takkan lupa karena siapa<br><br>
+
+    Pindah berkala, rumah ke rumah<br>
+    Selalu pada dirimu, aku berserah<br>
+    Jika ku disebut dalam sejarah<br>
+    M'reka takkan lupa karena siapa<br>
+  </div>
+</li>
+<li onclick="toggleLyrics(this)">🎵 Dehidrasi – Hindia <i class="fas fa-play"></i>
+  <div class="lyrics">
+    Lihatlah kebunku<br>
+    Penuh dengan ratusan pesan WhatsApp menggebu<br>
+    Selalu pura-pura lupa<br>
+    Membalas yang meminta<br>
+    Berkarya cuma-cuma, nihil M-BCA<br>
+    Memaksa wawancara dengan pertanyaan yang itu-itu saja<br>
+    Dengan yang dulu yakin bahwa ku takkan bisa<br>
+    Sekarang menyapa seakan sahabat lama<br><br>
+
+    Yang membuat resah, air yang keruh<br>
+    Siram jauh tak usah kau sentuh<br><br>
+
+    Lepaskan dirimu<br>
+    Bersihkan tubuhmu<br>
+    Dari racun yang mengalir di dalam darahmu<br><br>
+
+    Lepaskan dirimu<br>
+    Bersihkan lingkupmu<br>
+    Dari racun yang bersuara tentang hidupmu<br><br>
+
+    Oh, hati-hati<br>
+    Dalam memilih racunmu<br>
+    Oh, hati-hati<br>
+    Dengan hati yang berduri<br>
+    Oh, dehidrasi<br>
+    Mata air yang semu<br>
+    Oh, dehidrasi<br>
+    Memaksa tanpa mengerti<br><br>
+
+    Ku diminta bercerita<br>
+    Ku meninggi, "Sekarang berbeda"<br>
+    Katamu yang ramah, katanya<br>
+    Katamu yang dulu tak pernah ada<br><br>
+
+    Lepaskan dirimu<br>
+    Bersihkan tubuhmu<br>
+    Dari racun yang mengalir di dalam darahmu<br><br>
+
+    Lepaskan dirimu<br>
+    Bersihkan lingkupmu<br>
+    Dari racun yang bersuara tentang hidupmu<br><br>
+
+    Oh, hati-hati<br>
+    Dalam memilih racunmu<br>
+    Oh, hati-hati<br>
+    Dengan hati yang berduri<br>
+    Oh, dehidrasi<br>
+    Mata air yang semu<br>
+    Oh, dehidrasi<br>
+    Memaksa tanpa mengerti<br><br>
+
+    Lepaskan dirimu<br>
+    Bersihkan tubuhmu<br>
+    Dari racun yang mengalir di dalam darahmu<br><br>
+
+    Lepaskan dirimu<br>
+    Bersihkan lingkupmu<br>
+    Dari racun yang bersuara tentang hidupmu<br><br>
+
+    Oh, hati-hati<br>
+    Dalam memilih racunmu<br>
+    Oh, hati-hati<br>
+    Dengan hati yang berduri<br>
+    Oh, dehidrasi<br>
+    Mata air yang semu<br>
+    Oh, dehidrasi<br>
+    Memaksa tanpa mengerti<br>
+  </div>
+      </li>
+      </li>
+    </ul>
+  </div>
+  <section class="playlist">
+  <h1 class="playlist-title">🎧 Playlist Favorit 🎧 </h1>
+  <div class="spotify-embed">
+    <h3></h3>
+    <iframe style="border-radius:12px"
+      src="https://open.spotify.com/embed/playlist/326Cx8eXPtmtJNnXeyZUwy?utm_source=generator&theme=0"
+      width="100%" height="352" frameBorder="0"
+      allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <div class="spotify-embed">
+    <h3></h3>
+    <iframe style="border-radius:12px"
+      src="https://open.spotify.com/embed/playlist/7KCnsEfZzshrB4zksj4kCL?utm_source=generator"
+      width="100%" height="352" frameBorder="0"
+      allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <div class="spotify-embed">
+    <h3></h3>
+    <iframe style="border-radius:12px"
+      src="https://open.spotify.com/embed/playlist/1j2uTCKuyD501N5c9XC7iM?utm_source=generator"
+      width="100%" height="352" frameBorder="0"
+      allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy">
+    </iframe>
+  </div>
+</section>
+  </div>
+</section>
+  <script>
+    function toggleLyrics(el) {
+      const lyricsDiv = el.querySelector('.lyrics');
+      lyricsDiv.style.display = lyricsDiv.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</body>
+<!-- Popup overlay -->
+<div id="profileModal" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <h2>Profil Pengguna</h2>
+    <p><strong>Nama:</strong> Christ Daniel Santoso</p>
+    <p><strong>Email:</strong> nielzywashere@example.com</p>
+    <p><strong>No. Telepon:</strong> 085212793050</p>
+    <button onclick="closeProfileModal()">Tutup</button>
+</div>
+</html>
+  </ul>
+</section>
+  <!-- SwiperJS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  </script>
+  <script>
+  function closeProfileModal() {
+    document.getElementById('profileModal').style.display = 'none';
+  }
+
+  function logout() {
+    window.location.href = 'login.html'; // arahkan ke halaman login
+  }
+<script>
+  function closeProfileModal() {
+    document.getElementById('profileModal').style.display = 'none';
+  }
+
+  function logout() {
+    window.location.href = 'login.html';
+  }
+</script>
+<script>
+  function openProfileModal() {
+    alert("Menuju halaman profil...");
+  }
+  function logout() {
+    // Bersihkan data login (jika ada)
+    localStorage.clear(); 
+    sessionStorage.clear();
+
+    // Redirect ke login page
+    window.location.href = "login.html";
+  }
+</script>
+</html> 
+</body>
+<script>
+  function toggleProfile() {
+    const popup = document.getElementById("profilePopup");
+    popup.style.display = (popup.style.display === "none") ? "block" : "none";
+  }
+
+  function openProfileModal() {
+    document.getElementById("profileModal").style.display = "flex";
+  }
+
+  function closeProfileModal() {
+    document.getElementById("profileModal").style.display = "none";
+  }
+</script>
+
+<body>
+    <script>
+  function toggleProfile() {
+    const popup = document.getElementById("profilePopup");
+    popup.style.display = (popup.style.display === "none") ? "block" : "none";
+  }
+</script>
+  </div>
+  </script>
 </body>
 </html>
